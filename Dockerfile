@@ -16,3 +16,5 @@ RUN PHP_VERSION=$(php -r "echo PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;") && \
 RUN pecl install xdebug && docker-php-ext-enable xdebug
 # Clean up
 RUN rm -rf /tmp/ioncube*
+
+WORKDIR /var/www/html
