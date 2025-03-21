@@ -2,6 +2,10 @@ version: '3.8'
 
 services:
   wordpress:
+    build:
+      context: .  # This assumes the Dockerfile is in the same directory
+      dockerfile: Dockerfile  # Specify the name of your Dockerfile
+    restart: unless-stopped
     image: wordpress:latest
     restart: unless-stopped
     environment:
