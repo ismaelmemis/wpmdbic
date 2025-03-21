@@ -6,11 +6,6 @@ RUN apt-get update && apt-get install -y \
     wget \
     unzip
 
-RUN yes '' | pecl install mongodb && echo "extension=mongodb.so" > /usr/local/etc/php/conf.d/mongodb.ini
-RUN yes '' | pecl install apcu && docker-php-ext-enable apcu
-
-# Install Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Download and install ionCube Loader
 WORKDIR /tmp
 RUN wget https://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz
