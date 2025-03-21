@@ -3,17 +3,16 @@ version: '3.8'
 services:
   wordpress:
     build:
-      context: .  # This assumes the Dockerfile is in the same directory
-      dockerfile: Dockerfile  # Specify the name of your Dockerfile
+      context: . # This assumes the Dockerfile is in the same directory
+      dockerfile: Dockerfile # Specify the name of your Dockerfile
     restart: unless-stopped
     image: wordpress:latest
-    restart: unless-stopped
     environment:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress_pass
       WORDPRESS_DB_NAME: wordpress
-      WORDPRESS_TABLE_PREFIX: "wp_"
+      WORDPRESS_TABLE_PREFIX: 'wp_'
       WORDPRESS_CONFIG_EXTRA: |
         define('WP_REDIS_HOST', 'redis'); 
         define('WP_REDIS_PORT', 6379);
@@ -28,18 +27,18 @@ services:
       redis:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost"]
+      test: ['CMD', 'curl', '-f', 'http://localhost']
       interval: 10s
       timeout: 5s
       retries: 10
     deploy:
       resources:
         limits:
-          cpus: "1.0"
-          memory: "1G"
+          cpus: '1.0'
+          memory: '1G'
         reservations:
-          cpus: "0.25"
-          memory: "256M"
+          cpus: '0.25'
+          memory: '256M'
 
   db:
     image: mariadb:10.6
@@ -52,18 +51,18 @@ services:
     volumes:
       - db_data:/var/lib/mysql
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot_password"]
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost', '-uroot', '-proot_password']
       interval: 10s
       timeout: 5s
       retries: 10
     deploy:
       resources:
         limits:
-          cpus: "1.0"
-          memory: "1G"
+          cpus: '1.0'
+          memory: '1G'
         reservations:
-          cpus: "0.25"
-          memory: "256M"
+          cpus: '0.25'
+          memory: '256M'
 
   redis:
     image: redis:alpine
@@ -72,19 +71,18 @@ services:
     volumes:
       - redis_data:/data
     healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
+      test: ['CMD', 'redis-cli', 'ping']
       interval: 10s
       timeout: 5s
       retries: 5
     deploy:
       resources:
         limits:
-          cpus: "0.5"
-          memory: "512M"
+          cpus: '0.5'
+          memory: '512M'
         reservations:
-          cpus: "0.1"
-          memory: "128M"
-
+          cpus: '0.1'
+          memory: '128M'
 
 volumes:
   wordpress_data:
