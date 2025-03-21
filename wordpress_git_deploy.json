@@ -1,0 +1,15 @@
+{
+  "project_uuid": "xgcsswgs0koogo0c8088g0ko",
+  "server_uuid": "nw4sckkoog84wwcsg040w0kc",
+  "environment_name": "production",
+  "git_repository": "https://github.com/mrtornado/coolify-wordpress-maria",
+  "git_branch": "main",
+  "build_pack": "dockercompose",
+  "domains": "https://dodo.vizo.live",
+  "ports_exposes": "8080",
+  "name": "wordpress-redis-git",
+  "docker_compose_location": "docker-compose.yaml",
+  "instant_deploy": true,
+  "limits_memory": "1024MB",
+  "limits_cpus": "1"
+}

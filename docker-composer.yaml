@@ -1,0 +1,55 @@
+version: '3'
+
+services:
+  db:
+    image: mariadb:latest
+    environment:
+      MARIADB_ROOT_PASSWORD: root_password
+      MARIADB_DATABASE: wordpress
+      MARIADB_USER: wordpress
+      MARIADB_PASSWORD: wordpress_pass
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+
+  wordpress:
+  image: wordpress:latest
+  depends_on:
+    - db
+    - redis
+  environment:
+    WORDPRESS_DB_HOST: db
+    WORDPRESS_DB_USER: wordpress
+    WORDPRESS_DB_PASSWORD: wordpress_pass
+    WORDPRESS_DB_NAME: wordpress
+    # Optionally add Redis host configuration
+    WORDPRESS_REDIS_HOST: redis
+  restart: always
+  healthcheck:
+    test: ["CMD", "curl", "-f", "http://localhost"]
+    interval: 5s
+    timeout: 5s
+    retries: 10
+    start_period: 5s
+  volumes:
+    - wordpress_data:/var/www/html
+
+  redis:
+    image: redis:alpine
+    restart: always
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  db_data:
+  wordpress_data:
+  redis_data:
