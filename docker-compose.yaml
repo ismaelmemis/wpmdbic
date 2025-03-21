@@ -2,6 +2,9 @@ version: '3.8'
 
 services:
   wordpress:
+    build:
+      context: . # This assumes the Dockerfile is in the same directory
+      dockerfile: Dockerfile # Specify the name of your Dockerfile
     restart: unless-stopped
     image: wordpress:latest
     environment:
@@ -80,9 +83,7 @@ services:
         reservations:
           cpus: '0.1'
           memory: '128M'
-    build:
-      context: . # This assumes the Dockerfile is in the same directory
-      dockerfile: Dockerfile # Specify the name of your Dockerfile
+
 volumes:
   wordpress_data:
   db_data:
