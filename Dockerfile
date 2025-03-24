@@ -15,7 +15,7 @@ RUN tar xvfz  /tmp/ioncube_loaders_lin_x86-64.tar.gz
 #     echo "zend_extension = /usr/local/lib/php/extensions/no-debug-non-zts-20220829/ioncube_loader_lin_${PHP_VERSION}.so" > /usr/local/etc/php/conf.d/00-ioncube.ini
 RUN \
     cp /tmp/ioncube/ioncube_loader_lin_7.4.so /usr/local/lib/php/extensions/no-debug-non-zts-20220829/ioncube_loader_lin_7.4.so && \
-    echo "zend_extension = /usr/local/lib/php/extensions/no-debug-non-zts-20220829/ioncube_loader_lin_$7.4.so" > /usr/local/etc/php/conf.d/00-ioncube.ini
+    echo "zend_extension = /usr/local/lib/php/extensions/no-debug-non-zts-20220829/ioncube_loader_lin_7.4.so" > /usr/local/etc/php/conf.d/00-ioncube.ini
 RUN pecl install xdebug && docker-php-ext-enable xdebug
 # Clean up
 RUN rm -rf /tmp/ioncube*
