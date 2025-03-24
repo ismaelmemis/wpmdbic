@@ -62,7 +62,7 @@ services:
       PMA_HOST: db
       PMA_USER: wordpress
       PMA_PASSWORD: wordpress_pass
-      UPLOAD_LIMIT: 1GB
+      UPLOAD_LIMIT: 1G
     ports:
       - '8080:80'
     depends_on:
