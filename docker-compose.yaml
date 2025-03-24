@@ -16,6 +16,7 @@ services:
       WORDPRESS_DEBUG: 1
       WORDPRESS_DEBUG_LOG: 1
       WP_MEMORY_LIMIT: 512M
+      WP_MAX_MEMORY_LIMIT: 1G
     volumes:
       - wordpress_data:/var/www/html
     depends_on:
