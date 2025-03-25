@@ -1,6 +1,21 @@
 version: '3.8'
 
 services:
+  openlitespeed:
+    image: litespeedtech/openlitespeed:latest
+    restart: unless-stopped
+    ports:
+      - '80:80' # HTTP
+      - '443:443' # HTTPS
+      - '7080:7080' # OpenLiteSpeed Admin Panel
+    volumes:
+      - wordpress_data:/var/www/vhosts/localhost/html
+      - ols_conf:/usr/local/lsws/conf
+    environment:
+      - LSWS_ADMIN_USER=admin
+      - LSWS_ADMIN_PASS=admin123 # Change this for security
+    depends_on:
+      - wordpress
   wordpress:
     build:
       context: . # This assumes the Dockerfile is in the same directory
