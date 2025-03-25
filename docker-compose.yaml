@@ -11,6 +11,7 @@ services:
     volumes:
       - wordpress_data:/var/www/vhosts/localhost/html
       - ols_conf:/usr/local/lsws/conf
+      - ols_admin:/usr/local/lsws/admin/conf
     environment:
       - LSWS_ADMIN_USER=admin
       - LSWS_ADMIN_PASS=admin123 # Change this for security
@@ -97,6 +98,7 @@ volumes:
   wordpress_data:
   db_data:
   ols_conf: # Added this missing volume definition
+  ols_admin:
 
 networks:
   wordpress_network:
