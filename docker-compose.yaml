@@ -5,8 +5,8 @@ services:
     image: litespeedtech/openlitespeed:latest
     restart: unless-stopped
     ports:
-      - '8081:80' # HTTP
-      - '8443:443' # HTTPS
+      - '80:80' # HTTP
+      - '443:443' # HTTPS
       - '7080:7080' # OpenLiteSpeed Admin Panel
     volumes:
       - wordpress_data:/var/www/vhosts/localhost/html
@@ -50,7 +50,8 @@ services:
         reservations:
           cpus: '2.0'
           memory: '2G'
-
+    networks:
+      - wordpress_network
   db:
     image: mariadb:10.6
     restart: unless-stopped
@@ -74,6 +75,8 @@ services:
         reservations:
           cpus: '0.25'
           memory: '256M'
+    networks:
+      - wordpress_network
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     restart: unless-stopped
@@ -87,8 +90,13 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    networks:
+      - wordpress_network
 
 volumes:
   wordpress_data:
   db_data:
-  redis_data:
+  ols_conf: # Added this missing volume definition
+
+networks:
+  wordpress_network:
