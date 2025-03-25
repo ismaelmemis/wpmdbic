@@ -6,7 +6,7 @@ services:
       context: . # This assumes the Dockerfile is in the same directory
       dockerfile: Dockerfile # Specify the name of your Dockerfile
     restart: unless-stopped
-    image: wordpress:php8.2
+    image: wordpress:php7.4
     environment:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_USER: wordpress
