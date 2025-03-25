@@ -2,9 +2,9 @@
 FROM wordpress:php8.2
 
 # Install dependencies
-# RUN apt-get update && apt-get install -y \
-#     wget \
-#     unzip
+RUN apt-get update && apt-get install -y \
+    wget \
+    unzip
 
 # Download and install ionCube Loader
 WORKDIR /tmp
